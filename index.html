@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple To-Do App</title>
+</head>
+<body>
+
+    <!-- Task input box and button -->
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+
+    <!-- Unordered list to display tasks -->
+    <ul id="taskList"></ul>
+
+<script>
+    // Array to store tasks
+    let tasks = [];
+
+    // Function to add task
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const taskText = taskInput.value.trim();
+
+        if (taskText !== '') {
+            tasks.push(taskText); // Add task to the list
+            displayTasks();       // Update task list in UI
+            taskInput.value = ''; // Clear input field
+        }
+    }
+
+    // Function to display tasks
+    function displayTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.textContent = task + ' ';
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+
+            deleteButton.onclick = function () {
+                tasks.splice(index, 1); // Remove task
+                displayTasks();         // Refresh list
+            };
+
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+        });
+    }
+</script>
+
+</body>
+</html>
