@@ -46,7 +46,19 @@
                 displayTasks();         // Refresh list
             };
 
+            const updateButton =document.createElement('button')
+            updateButton.textContent ='Update'
+            updateButton.onclick =function(){
+                const updatedTask = prompt('enter updated task:',task)
+                if(updatedTask !== null){
+                    tasks[index] =updatedTask.trim()
+                    displayTasks()
+                }
+
+            }
+
             li.appendChild(deleteButton);
+            li.appendChild(updateButton)
             taskList.appendChild(li);
         });
     }
